@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CicloBank - Banco digital sustentável para catadores, cooperativas e operadores logísticos. Facilite sua gestão financeira e contribua para a economia circular.">
+    <meta name="keywords" content="CicloBank, economia circular, reciclagem, sustentabilidade, banco digital">
+    <meta name="author" content="CicloBank">
+    <title>CicloBank - Soluções Financeiras Sustentáveis</title>
+
+    <!-- Link para Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Link para a fonte Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo geral */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #005a8c;
+            color: white;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 50px;
+        }
+
+        .section {
+           padding: 80px 20px; /* Adiciona espaço para compensar o cabeçalho fixo */
+               scroll-margin-top: 120px; /* Garante que o link de ancoragem pare no ponto correto */
+        }    
+        .logo {
+            flex-grow: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .menu {
+            display: flex;
+            cursor: pointer;
+            flex-direction: column;
+            width: 20px;
+            margin-right: auto;
+            justify-content: space-between;
+            height: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu span {
+            display: block;
+            background-color: white;
+            height: 2px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .menu.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -3px);
+        }
+
+        .theme-toggle {
+            background-color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .cta-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .cta-button {
+            background-color: #ffcc00;
+            color: #005a8c;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #e6b800;
+        }
+
+        nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #005a8c;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        nav ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 20px 0;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        nav.active {
+            display: flex;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #005a8c;
+        }
+
+        .faq-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            margin-top: 40px;
+            border-radius: 8px;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: #005a8c;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            color: #005a8c;
+        }
+
+        .faq-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .contact-section {
+            padding: 20px;
+            margin-top: 40px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            color: #005a8c;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background-color: #005a8c;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #003f6c;
+        }
+
+        footer {
+            background-color: #005a8c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Modo escuro */
+        body.dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode header {
+            background-color: #222;
+        }
+
+        body.dark-mode .cta-button {
+            background-color: #444;
+            color: #ffcc00;
+        }
+
+        body.dark-mode section {
+            background-color: #444;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode footer {
+            background-color: #222;
+        }
+
+        body.dark-mode input,
+        body.dark-mode textarea {
+            background-color: #555;
+            color: white;
+            border-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">
+            <img src="images/logo.png" alt="Logo CicloBank">
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+    </header>
+
+    <div class="cta-container">
+        <a href="#solicitar-antecipacao" class="cta-button">Solicitar Antecipação</a>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#sobre" onclick="closeMenu()">Sobre</a></li>
+            <li><a href="#como-funciona" onclick="closeMenu()">Como Funciona</a></li>
+            <li><a href="#beneficios" onclick="closeMenu()">Benefícios</a></li>
+            <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
+            <li><a href="#contato" onclick="closeMenu()">Contato</a></li>
+        </ul>
+    </nav>
+<section id="sobre">
+        <h1>Sobre</h1>
+        <p>Bem-vindo ao CicloBank, um banco digital que transforma a forma de fazer negócios no setor de reciclagem. Nosso objetivo é impulsionar a economia circular e facilitar o acesso a soluções financeiras para catadores, cooperativas e operadores logísticos.</p>
+        <p>O CicloBank é uma plataforma inovadora que oferece contas digitais, crédito sustentável e antecipação de recebíveis, permitindo que os catadores e as cooperativas de reciclagem tenham acesso fácil e rápido a soluções financeiras. Com a nossa ajuda, os participantes do setor podem otimizar sua gestão financeira, realizar transações seguras e contribuir para um futuro mais sustentável.</p>
+    </section>
+
+    <section id="como-funciona">
+        <h2>Como Funciona</h2>
+        <p>Cadastre-se no CicloBank e aproveite nossos serviços. Oferecemos antecipação de créditos, facilitando o fluxo de caixa de catadores e cooperativas de reciclagem, além de fornecer recursos para novos investimentos na cadeia de reciclagem. Tudo isso com a conveniência de uma plataforma digital simples e acessível.</p>
+        <ul>
+            <li>Abra sua conta digital rapidamente.</li>
+            <li>Solicite antecipação de recebíveis e otimize o fluxo de caixa.</li>
+            <li>Acesse crédito sustentável para seu negócio de reciclagem.</li>
+            <li>Contribua para a economia circular enquanto recebe suporte financeiro completo.</li>
+        </ul>
+    </section>
+
+    <section id="beneficios">
+        <h2>Benefícios</h2>
+        <ul>
+            <li><strong>Acesso rápido ao crédito:</strong> Sem burocracia, com taxas justas e prazos flexíveis.</li>
+            <li><strong>Plataforma simples e segura:</strong> Um sistema fácil de usar, com transações protegidas e suporte dedicado.</li>
+            <li><strong>Impacto positivo na sustentabilidade:</strong> Cada transação ajuda a fortalecer a economia circular e o setor de reciclagem.</li>
+            <li><strong>Antecipação de recebíveis:</strong> Receba antes, planeje melhor seu negócio e invista na ampliação de sua operação.</li>
+        </ul>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <h2>Perguntas Frequentes (FAQ)</h2>
+        <div class="faq-item">
+            <h3>O que são fontes financeiras sustentáveis?</h3>
+            <p>Fontes financeiras sustentáveis referem-se a investimentos e financiamentos que priorizam o impacto ambiental, social e de governança (ESG).</p>
+        </div>
+        <div class="faq-item">
+            <h3>O que é antecipação de recebíveis?</h3>
+            <p>A antecipação de recebíveis é uma operação financeira onde uma empresa recebe antecipadamente o valor de uma venda futura ou de recebíveis.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Como ter acesso à antecipação de recebíveis no CicloBank?</h3>
+            <p>Catadores, cooperativas e operadores logísticos podem acessar a antecipação de recebíveis pela nossa plataforma digital.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contato">
+        <h2>Contato</h2>
+        <p>Email: contato@ciclobank.com</p>
+        <p>Telefone: (21) 1234-5678</p>
+        <div class="contact-form">
+            <h3>Envie uma mensagem</h3>
+            <form onsubmit="redirectToWhatsApp(event)">
+                <input type="text" id="nome" placeholder="Seu nome" required>
+                <input type="email" id="email" placeholder="Seu email" required>
+                <textarea id="mensagem" rows="4" placeholder="Sua mensagem" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="legal-alert">
+        <p>Concessão do crédito sujeita à aprovação do cadastro e da análise de crédito por parte do CicloBank e atendimento das regras dos produtos.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 CicloBank. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            const nav = document.querySelector('nav');
+            menu.classList.toggle('open');
+            nav.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const menu = document.querySelector('.menu');
+            const nav = document.querySelector('nav');
+            menu.classList.remove('open');
+            nav.classList.remove('active');
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        }
+
+        function redirectToWhatsApp(event) {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+
+            // Captura os valores preenchidos pelo usuário
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Formata a mensagem para o WhatsApp
+            const whatsappMessage = `Olá, meu nome é ${nome}, meu email é ${email} Desejo saber mais sobre a antecipação de recebíveis.${mensagem}`;
+
+            // Número de telefone no formato internacional
+            const phoneNumber = "+5521964119992";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+            // Redireciona para o WhatsApp
+            window.location.href = whatsappURL;
+        }
+    </script>
+</body>
+</html>
+    
